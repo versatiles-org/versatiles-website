@@ -7,7 +7,7 @@ Repository for building the website for [versatiles.org](https://versatiles.org)
 Clone the repository and install the dependencies:
 
 ```bash
-git clone "https://github.com/versatiles-org/versatiles-org.github.io.git
+git clone --recurse-submodules "https://github.com/versatiles-org/versatiles-org.github.io.git"
 cd versatiles-org.github.io
 npm install
 ```
