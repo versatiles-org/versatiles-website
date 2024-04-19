@@ -1,9 +1,9 @@
 import { existsSync } from 'node:fs';
-import { cp, mkdir, readdir, readFile, writeFile, rm } from 'node:fs/promises';
-import { basename, resolve } from 'node:path';
+import { cp, mkdir, rm } from 'node:fs/promises';
+import {  resolve } from 'node:path';
 import type { WrappedProcessor } from './modules.ts';
-import { getHandlebars, getPartials, getProcessor } from './modules.ts';
-import { generateMenu } from './menu.ts';
+import { getProcessor } from './modules.ts';
+import { buildPages } from './pages.ts';
 
 export default class CMS {
 	private readonly srcPath: string;
@@ -40,49 +40,50 @@ export default class CMS {
 	}
 
 	private async buildPages(): Promise<void> {
-		const path = resolve(this.srcPath, 'pages');
+		await buildPages(this.srcPath, this.dstPath, this.mdProcessor);
 
-		const filenames = (await readdir(path)).flatMap(filename => {
-			return filename.endsWith('.md') ? [filename] : [];
-		});
+		// #################
+		process.exit();
 
-		const { srcPath, dstPath, mdProcessor } = this;
+		/*
+				const { srcPath, dstPath, mdProcessor } = this;
+		
+		
+				await Promise.all(filenames.map(async filename => {
+					await buildPage(resolve(path, filename));
+				}));
+		
+				async function buildPage(fullname: string): Promise<void> {
+					const filename = basename(fullname);
+					const pagename = basename(filename, '.md');
+		
+					try {
+						const content = await readFile(fullname, 'utf8');
+						const { text, data } = await mdProcessor(content);
+		
+						if (!('title' in data) || (typeof data.title !== 'string')) throw Error('missing title');
+		
+						let html = [
+							partials.header,
+							text,
+							partials.footer,
+						].join('\n');
+		
+						html = handlebars.compile(html)({
+							...data,
+							menu: generateMenu(filename),
+							githubLink: `https://github.com/versatiles-org/versatiles-website/blob/main/docs/pages/${filename}`,
+						});
+		
+						await writeFile(resolve(dstPath, pagename + '.html'), html);
+		
+					} catch (error) {
+						console.error('Error for page ' + pagename);
+						throw error;
+					}
+				}
+			*/
 
-		const partials = getPartials(srcPath);
-		const handlebars = await getHandlebars(srcPath, dstPath);
-
-		await Promise.all(filenames.map(async filename => {
-			await buildPage(resolve(path, filename));
-		}));
-
-		async function buildPage(fullname: string): Promise<void> {
-			const filename = basename(fullname);
-			const pagename = basename(filename, '.md');
-
-			try {
-				const content = await readFile(fullname, 'utf8');
-				const { text, data } = await mdProcessor(content);
-
-				if (!('title' in data) || (typeof data.title !== 'string')) throw Error('missing title');
-
-				let html = [
-					partials.header,
-					text,
-					partials.footer,
-				].join('\n');
-
-				html = handlebars.compile(html)({
-					...data,
-					menu: generateMenu(filename),
-					githubLink: `https://github.com/versatiles-org/versatiles-website/blob/main/docs/pages/${filename}`,
-				});
-
-				await writeFile(resolve(dstPath, pagename + '.html'), html);
-
-			} catch (error) {
-				console.error('Error for page ' + pagename);
-				throw error;
-			}
-		}
 	}
+
 }
