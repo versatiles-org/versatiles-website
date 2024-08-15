@@ -63,14 +63,3 @@ You can [download](https://download.versatiles.org/) the latest planet and serve
 You can [download](https://download.versatiles.org/) the latest planet and serve it using your own cloud service on Google Cloud, AWS, Microsoft Azure, DigitalOcean, …
 
 We are still testing this approach and working on a [documentation](https://github.com/versatiles-org/versatiles-documentation).
-
-<script>
-  if (navigator.clipboard) {
-    document.querySelectorAll('code').forEach(block => {
-      let button = document.createElement('button');
-      button.innerText = 'Copy Code';
-      block.insertAdjacentElement('afterend', button);
-      button.addEventListener('click', () => navigator.clipboard.writeText(block.innerText));
-    });
-  }
-</script>
