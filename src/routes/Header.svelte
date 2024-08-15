@@ -10,7 +10,8 @@
 					style="line-height: inherit; font-size: inherit;margin: 0; padding: 0;"
 				>
 					<img
-						src="%sveltekit.assets%/assets/github.png"
+						src="/assets/github.png"
+						alt="GitHub logo"
 						style="display: inline-block; height:1.3em; vertical-align: middle;"
 					/>
 				</a>
