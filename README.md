@@ -1,22 +1,38 @@
-# Versatiles.org Website
+# create-svelte
 
-Repository for building the website for [versatiles.org](https://versatiles.org).
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Installation
+## Creating a project
 
-Clone the repository and install the dependencies:
+If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
-git clone "https://github.com/versatiles-org/versatiles-org.github.io.git
-cd versatiles-org.github.io
-npm install
+# create a new project in the current directory
+npm create svelte@latest
+
+# create a new project in my-app
+npm create svelte@latest my-app
 ```
 
-## Development Scripts
+## Developing
 
-This repository comes with npm scripts for building, previewing and developing the site:
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-- `npm run build`: Builds the site and outputs it to the `/dist/` directory for production use.
-- `npm run watch`: Monitors the source files for changes and automatically rebuilds the site.
-- `npm run preview`: Serves the built site locally for preview purposes.
-- `npm run dev`: Combines watching files and serving the site locally, automatically updating the site on file changes - basically a "**developer mode**".
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

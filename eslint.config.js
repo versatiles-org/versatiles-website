@@ -1,54 +1,33 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
-import parser from '@typescript-eslint/parser';
-import eslint_plugin from '@typescript-eslint/eslint-plugin';
+import svelte from 'eslint-plugin-svelte';
+import prettier from 'eslint-config-prettier';
+import globals from 'globals';
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
 	js.configs.recommended,
 	...ts.configs.recommended,
+	...svelte.configs['flat/recommended'],
+	prettier,
+	...svelte.configs['flat/prettier'],
 	{
-		ignores: [
-			'**/coverage/**/*.*',
-			'**/dist/**/*.*',
-			'**/node_modules/**/*.*',
-		]
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				...globals.node
+			}
+		}
 	},
 	{
-		files: [
-			'**/scripts/**/*.ts',
-			'**/src/**/*.ts',
-		],
+		files: ['**/*.svelte'],
 		languageOptions: {
-			ecmaVersion: 'latest',
-			sourceType: 'module',
-			globals: {
-				browser: false,
-				es6: true,
-				node: true
-			},
-			parser,
 			parserOptions: {
-				sourceType: 'module',
-				project: './tsconfig.json',
-				tsconfigRootDir: import.meta.dirname,
-			},
-		},
-		plugins: {
-			'@typescript-eslint': eslint_plugin,
-		},
-		linterOptions: {
-			reportUnusedDisableDirectives: true,
-		},
-		rules: {
-			'no-unused-vars': 'off',
-			'@typescript-eslint/no-unused-vars': [
-				'error',
-				{
-					argsIgnorePattern: '^_',
-					varsIgnorePattern: '^_',
-					caughtErrorsIgnorePattern: '^_'
-				}
-			]
+				parser: ts.parser
+			}
 		}
+	},
+	{
+		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}
-]
+];
