@@ -1,6 +1,7 @@
 <!-- src/lib/components/Menu.svelte -->
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { get } from 'svelte/store';
 
 	interface MenuItem {
 		label: string;
@@ -8,7 +9,8 @@
 	}
 
 	export let items: MenuItem[] = [];
-	const currentUrl = $page.route.id;
+	
+	$: currentUrl = get(page).url.pathname;
 </script>
 
 <nav>
