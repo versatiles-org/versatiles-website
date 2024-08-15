@@ -20,7 +20,7 @@
 	</nav>
 </header>
 
-<style>
+<style lang="less">
 	header {
 		display: flex;
 		justify-content: space-between;
@@ -31,30 +31,30 @@
 		border-style: solid;
 		border-width: 0 0 1px;
 		border-image: linear-gradient(60deg, #6b0075, #9d35ff 40%, #93a813 65%, #005034) 0.5;
-	}
 
-	nav ul {
-		text-align: right;
-		list-style: none;
-		justify-content: space-between;
-		display: flex;
-		justify-content: end;
-		column-gap: 1em;
-		margin: 0.2em;
-	}
+		ul {
+			text-align: right;
+			list-style: none;
+			justify-content: space-between;
+			display: flex;
+			justify-content: end;
+			column-gap: 1em;
+			margin: 0.2em;
+		}
 
-	nav li {
-		color: #fff;
-		opacity: 0.6;
-		transition: opacity 0.1s;
-	}
+		li {
+			color: #fff;
+			opacity: 0.6;
+			transition: opacity 0.1s;
 
-	nav li.selected,
-	nav li:hover {
-		opacity: 1;
-	}
+			&.selected,
+			&:hover {
+				opacity: 1;
+			}
 
-	nav li a {
-		text-decoration: none;
+			a {
+				text-decoration: none;
+			}
+		}
 	}
 </style>
