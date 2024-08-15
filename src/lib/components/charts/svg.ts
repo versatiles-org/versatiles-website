@@ -89,12 +89,11 @@ export function createElement(tagName: string): SVGElement {
 
 export function setAttributes(node: SVGElement, attributeObj: Record<string, number | string | null>): void {
 	for (const key in attributeObj) {
-		const name = key.replace(/[A-Z]/g, c => '-' + c.toLowerCase());
 		const value = attributeObj[key];
 		if (value == null) {
-			node.removeAttribute(name);
+			node.removeAttribute(key);
 		} else {
-			node.setAttribute(name, String(value));
+			node.setAttribute(key, String(value));
 		}
 	}
 }

@@ -2,13 +2,8 @@ import type { BBox } from './bbox.ts';
 import { Group, createElement, setAttributes } from './svg.ts';
 
 
-
-const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
 export class Canvas {
 	public readonly root: Group;
-
-	private idIndex = 0;
 
 	public constructor() {
 		this.root = new Group(this);
@@ -28,18 +23,10 @@ export class Canvas {
 		setAttributes(svg, {
 			version: '1.1',
 			xmlns: 'http://www.w3.org/2000/svg',
+			viewBox: bbox.viewBox,
+			width: bbox.width,
+			height: bbox.height,
 		});
-		svg.setAttribute('viewBox', bbox.viewBox);
 		return svg.outerHTML();
-	}
-
-	public getNewId(): string {
-		let i = this.idIndex++;
-		let id = '';
-		do {
-			id += chars[i % chars.length];
-			i = Math.floor(i / chars.length);
-		} while (i > 0);
-		return id;
 	}
 }
