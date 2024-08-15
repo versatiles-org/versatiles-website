@@ -1,4 +1,6 @@
+<!-- ChartFlow.svelte -->
 <script lang="ts">
+	/* eslint-disable svelte/no-at-html-tags */
 	import { Chart } from './charts/chart.js';
 
 	export let step: number | undefined = undefined;
