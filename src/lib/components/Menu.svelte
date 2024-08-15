@@ -1,7 +1,6 @@
 <!-- src/lib/components/Menu.svelte -->
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { get } from 'svelte/store';
 
 	interface MenuItem {
 		label: string;
@@ -9,14 +8,15 @@
 	}
 
 	export let items: MenuItem[] = [];
-	
-	$: currentUrl = get(page).url.pathname;
+	let currentUrl: string;
+
+	$: currentUrl = $page.url.pathname.replace(/^\/+|\/+$/g, '');
 </script>
 
 <nav>
 	<ul>
 		{#each items as { label, url }}
-			<li class:selected={url == currentUrl}>
+			<li class:selected={url === currentUrl}>
 				<a href="/{url}">{label}</a>
 			</li>
 		{/each}
