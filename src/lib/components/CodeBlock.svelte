@@ -39,7 +39,7 @@
 	{@html github}
 </svelte:head>
 
-<div class="code-container">
+<section>
 	<Highlight {language} {code} />
 	<button on:click={copyToClipboard}>
 		{#if copySuccess}
@@ -48,27 +48,27 @@
 			Copy
 		{/if}
 	</button>
-</div>
+</section>
 
 <style>
-	.code-container {
+	section {
 		position: relative;
 		margin: 0 auto 1em;
 		font-size: 0.7em;
-		width: 90%;
 		text-align: left;
 	}
 	button {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 5px;
+		right: 5px;
+		font-size: 0.8rem;
 		padding: 0.5em;
 		background: rgba(0, 0, 0, 0.5);
 		color: white;
 		border: none;
 		cursor: pointer;
 		border: 1px solid rgba(255, 255, 255, 0.2);
-		border-radius: 5px;
+		border-radius: 0.4rem;
 		opacity: 0.5;
 		transition: opacity 0.2s ease;
 	}
@@ -76,5 +76,6 @@
 		background-color: rgba(255, 255, 255, 0.2);
 		border-color: rgba(255, 255, 255, 0.8);
 		opacity: 1;
+		transition: opacity 0s;
 	}
 </style>
