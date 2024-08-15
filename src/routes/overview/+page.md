@@ -2,13 +2,11 @@
 title: Overview
 ---
 
-
 ## How does VersaTiles work?
 
 There are many excellent FLOSS solutions for generating, processing, serving, and rendering maps. But in the end, you have to combine several solutions and build a complete tech stack. That takes a lot of effort.
 
 VersaTiles tackles this problem by defining a four-step process chain that defines how to process OpenStreetMap data and serve it as an interactive web map. It also provides a reference implementation of these four steps, but is flexible enough so that any step can be replaced by your preferred solution. For exanple, if you want to use a different tile source, server or frontend, you can simply replace the relevant part and still use the other steps.
-
 
 ## The 4 steps of VersaTiles
 
@@ -23,45 +21,53 @@ The process chain in more details:
 <tr><th><ChartFlow step="0"></ChartFlow></th><td>
 
 We use the latest OSM dump.
+
 </td></tr>
 <tr><th><ChartFlow step="1"></ChartFlow></th><td>
 
 _Generator produces vector tiles._ We use [Tilemaker](https://tilemaker.org/) to generate vector tiles in [shortbread schema](https://shortbread-tiles.org/schema/).
+
 </td></tr>
 <tr><th><ChartFlow step="2"></ChartFlow></th><td>
 
 a [versatiles container](http://github.com/versatiles-org/versatiles-spec), a much simpler and more efficient tile storage format than .mbtiles.
+
 </td></tr>
 <tr><th><ChartFlow step="3"></ChartFlow></th><td>
 
 _Server is serving the vector tiles._
+
 </td></tr>
 <tr><th><ChartFlow step="4"></ChartFlow></th><td>
 
 ... but only speaks HTTP, because ...
+
 </td></tr>
 <tr><th><ChartFlow step="5"></ChartFlow></th><td>
 
 _The Network handles the network stuff,_ like TLS certificates, caching, load balancing, etc.
+
 </td></tr>
 <tr><th><ChartFlow step="6"></ChartFlow></th><td>
 
 Now we serve tiles to the internet ...
+
 </td></tr>
 <tr><th><ChartFlow step="7"></ChartFlow></th><td>
 
 _The Frontend loads and renders the vector tiles._
+
 </td></tr>
 <tr><th><ChartFlow step="8"></ChartFlow></th><td>
 
 Enjoy.
+
 </td></tr>
 </table>
 
 We combined permissively licensed open source software, data, schemas and styles, such as [Tilemaker](https://tilemaker.org/), [Shortbread Tiles Schema](https://shortbread-tiles.org/schema/) and [MapLibre](https://maplibre.org/).
 
 VersaTiles lets you use OpenStreetMap-based vector tiles, without any restrictions, locked-in paid services or attribution requirements beyond OpenStreetMap. You can use the [freely downloadable tilesets from VersaTiles](https://download.versatiles.org) on your own infrastructure, in any way you like. Our open spec, royalty-free and permissively licensed implementations work with virtually any architecture.
-
 
 ## What tools do we provide?
 
@@ -78,7 +84,6 @@ VersaTiles lets you use OpenStreetMap-based vector tiles, without any restrictio
 - [versatiles-frontend](https://github.com/versatiles-org/versatiles-frontend) builds frontend packages.
 - [versatiles-renderer](https://github.com/versatiles-org/versatiles-renderer) a preliminary tool to render maps in the backend as SVG or PNG.
 - [versatiles-documentation](https://github.com/versatiles-org/versatiles-documentation) contains all the documentation \o/.
-
 
 ## Need more information?
 

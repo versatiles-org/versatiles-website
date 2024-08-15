@@ -19,7 +19,7 @@ export class Group {
 
 	public getBBox(): BBox {
 		const bbox = this.bbox.clone();
-		this.subGroups.forEach(g => {
+		this.subGroups.forEach((g) => {
 			bbox.include(g.getBBox());
 		});
 		return bbox;
@@ -36,7 +36,7 @@ export class Group {
 		const node = this.appendElement('text');
 		setAttributes(node, {
 			x: Math.round(rect[0] + rect[2] / 2),
-			y: Math.round(rect[1] + rect[3] / 2),
+			y: Math.round(rect[1] + rect[3] / 2)
 		});
 		this.setMultiStyle(node, { dominantBaseline: 'central', textAnchor: 'middle', ...style });
 		node.textContent = text;
@@ -66,7 +66,7 @@ export class Group {
 	public setMultiStyle(node: SVGElement, style: Style): void {
 		Object.entries(style).forEach(([key, value]) => {
 			node.style[key] = value;
-		})
+		});
 	}
 
 	private append(node: SVGElement): SVGElement {
@@ -83,7 +83,10 @@ export function createElement(tagName: string): SVGElement {
 	return new SVGElement(tagName);
 }
 
-export function setAttributes(node: SVGElement, attributeObj: Record<string, number | string | null>): void {
+export function setAttributes(
+	node: SVGElement,
+	attributeObj: Record<string, number | string | null>
+): void {
 	for (const key in attributeObj) {
 		const value = attributeObj[key];
 		if (value == null) {
@@ -98,7 +101,7 @@ export class SVGElement {
 	tagName: string;
 	public textContent: string | undefined;
 	public style: Style = {};
-	attributes = new Map<string, string>;
+	attributes = new Map<string, string>();
 	children: SVGElement[] = [];
 	constructor(tagName: string) {
 		this.tagName = tagName;
@@ -115,21 +118,25 @@ export class SVGElement {
 	public outerHTML(): string {
 		let content: string = '';
 		if (this.children.length > 0) {
-			content = this.children.map(c => c.outerHTML()).join('');
+			content = this.children.map((c) => c.outerHTML()).join('');
 		}
 		if (this.textContent) {
 			if (content) throw Error();
 			content = this.textContent;
 		}
 
-		let properties = Array.from(this.attributes.entries()).map(([k, v]) => ` ${k}="${v}"`).join('');
-		const style = Object.entries(this.style).map(([key, value]) => {
-			key = key.replace(/[A-Z]/g, c => '-' + c.toLowerCase());
-			if (value.includes('"')) throw Error();
-			if (value.includes(';')) throw Error();
-			if (value.includes(':')) throw Error();
-			return key + ':' + value
-		}).join(';');
+		let properties = Array.from(this.attributes.entries())
+			.map(([k, v]) => ` ${k}="${v}"`)
+			.join('');
+		const style = Object.entries(this.style)
+			.map(([key, value]) => {
+				key = key.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
+				if (value.includes('"')) throw Error();
+				if (value.includes(';')) throw Error();
+				if (value.includes(':')) throw Error();
+				return key + ':' + value;
+			})
+			.join(';');
 		if (style) {
 			properties += ` style="${style}"`;
 		}

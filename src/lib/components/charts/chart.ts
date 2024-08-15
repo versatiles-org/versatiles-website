@@ -1,4 +1,3 @@
-
 import { Group, type RectType } from './svg.ts';
 import Color from 'color';
 import type { BBox } from './bbox.ts';
@@ -37,7 +36,7 @@ export class Chart {
 		this.layers = {
 			fill: this.root.appendGroup(),
 			line: this.root.appendGroup(),
-			text: this.root.appendGroup(),
+			text: this.root.appendGroup()
 		};
 
 		this.colWidth = opt.colWidth ?? 200;
@@ -50,16 +49,24 @@ export class Chart {
 	}
 
 	public getSVG(): string {
-		return this.root.node.outerHTML()
+		return this.root.node.outerHTML();
 	}
 
-	public addFlow(): { add: (text: string, hue: number, alpha: number, highlight?: boolean, end?: boolean) => void } {
+	public addFlow(): {
+		add: (text: string, hue: number, alpha: number, highlight?: boolean, end?: boolean) => void;
+	} {
 		let x0 = 0;
 		const { y0 } = this;
 
 		this.y0 += this.boxHeight;
 
-		const add = (text: string, hue: number, alpha: number, highlight = false, end = false): void => {
+		const add = (
+			text: string,
+			hue: number,
+			alpha: number,
+			highlight = false,
+			end = false
+		): void => {
 			const colorLight = Color([hue, 100, 40, alpha], 'hsl').toString();
 			const colorDark = Color([hue, 100, 60, alpha], 'hsl').toString();
 			const color = `light-dark(${colorLight},${colorDark})`;
@@ -72,14 +79,14 @@ export class Chart {
 
 			this.layers.fill.drawFlowBox(rect, {
 				fillOpacity: '0.4',
-				fill: color,
+				fill: color
 			});
 
 			if (highlight) {
 				this.layers.line.drawFlowBox(rect, {
 					fill: 'none',
 					strokeWidth: '2px',
-					stroke: color,
+					stroke: color
 				});
 			}
 
@@ -89,7 +96,7 @@ export class Chart {
 				fontFamily,
 				fontSize: '16px',
 				stroke: 'none',
-				fill: color,
+				fill: color
 			});
 
 			x0 += width;

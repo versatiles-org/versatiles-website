@@ -3,9 +3,9 @@ name: CI
 on:
   push:
     branches:
-      - "**"
+      - '**'
     tags:
-      - "!**" # Don't run twice on commits with tags
+      - '!**' # Don't run twice on commits with tags
   pull_request:
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      
+
       - name: Cache Node Modules
         id: npm-cache
         uses: actions/cache@v4
@@ -40,20 +40,20 @@ jobs:
 
       - name: Lint
         run: npm run lint
-        
+
       - name: Build
         run: npm run build
 
-#      - name: Run tests
-#        run: npm run test
-#
-#      - name: Generate test coverage
-#        run: npm run test-coverage
-#
-#      - name: Upload test coverage
-#        uses: codecov/codecov-action@v4
-#        env:
-#          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      #      - name: Run tests
+      #        run: npm run test
+      #
+      #      - name: Generate test coverage
+      #        run: npm run test-coverage
+      #
+      #      - name: Upload test coverage
+      #        uses: codecov/codecov-action@v4
+      #        env:
+      #          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Fix permissions
         if: github.ref == 'refs/heads/main'
@@ -63,7 +63,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "dist"
+          path: 'dist'
 
   deploy:
     if: github.ref == 'refs/heads/main'

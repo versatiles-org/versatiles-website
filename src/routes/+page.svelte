@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import maplibregl from 'maplibre-gl';
 	import 'maplibre-gl/dist/maplibre-gl.css';
-	
+
 	let container: HTMLDivElement;
 	onMount(() => {
 		const map = new maplibregl.Map({

@@ -1,4 +1,3 @@
-
 type Args = [string];
 
 export class Color {
@@ -20,7 +19,7 @@ export class Color {
 					parseInt(text[1], 16) * 17,
 					parseInt(text[2], 16) * 17,
 					parseInt(text[3], 16) * 17,
-					255,
+					255
 				]);
 			}
 		}
@@ -37,17 +36,22 @@ export class Color {
 			this.values[0] * (1 - strength) + color.values[0] * strength,
 			this.values[1] * (1 - strength) + color.values[1] * strength,
 			this.values[2] * (1 - strength) + color.values[2] * strength,
-			this.values[3] * (1 - strength) + color.values[3] * strength,
+			this.values[3] * (1 - strength) + color.values[3] * strength
 		];
 		return this;
 	}
 
 	public toString(): string {
-		return '#' + this.values.map(v => {
-			v = Math.min(255, Math.max(0, Math.round(v)));
-			let s = v.toString(16);
-			while (s.length < 2) s = '0' + v;
-			return s;
-		}).join('');
+		return (
+			'#' +
+			this.values
+				.map((v) => {
+					v = Math.min(255, Math.max(0, Math.round(v)));
+					let s = v.toString(16);
+					while (s.length < 2) s = '0' + v;
+					return s;
+				})
+				.join('')
+		);
 	}
 }

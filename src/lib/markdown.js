@@ -15,13 +15,17 @@ async function markdownToHtml(content) {
 					imports.add('import ChartFlow from "$lib/components/ChartFlow.svelte";');
 					node.tagName = 'ChartFlow';
 					node.children = [];
-				};
+				}
 				if (node.tagName === 'pre' && node.children.length && node.children[0].tagName === 'code') {
 					const codeNode = node.children[0];
-					const language = codeNode.properties.className ? codeNode.properties.className[0].replace('language-', '') : 'plaintext';
-					const codeContent = codeNode.children[0].value.replace(/{/g, '&#123;').replace(/}/g, '&#125;');
+					const language = codeNode.properties.className
+						? codeNode.properties.className[0].replace('language-', '')
+						: 'plaintext';
+					const codeContent = codeNode.children[0].value
+						.replace(/{/g, '&#123;')
+						.replace(/}/g, '&#125;');
 
-					imports.add('import CodeBlock from "$lib/components/CodeBlock.svelte";')
+					imports.add('import CodeBlock from "$lib/components/CodeBlock.svelte";');
 					// Replace the <pre><code> block with the <CodeBlock> component
 					node.tagName = 'CodeBlock';
 					node.properties = {
@@ -44,12 +48,9 @@ async function markdownToHtml(content) {
 	).toString();
 
 	if (imports.size > 0) {
-		result = [
-			'<script lang="ts">',
-			...Array.from(imports.values()),
-			'</script>',
-			result
-		].join('\n');
+		result = ['<script lang="ts">', ...Array.from(imports.values()), '</script>', result].join(
+			'\n'
+		);
 	}
 
 	return result;
@@ -62,11 +63,11 @@ function markdown() {
 			if (filename.endsWith('.md')) {
 				return markdownToHtml(content).then((code) => {
 					console.log(code);
-					return { code }
+					return { code };
 				});
 			}
 			return { code: content };
-		},
+		}
 	};
 }
 

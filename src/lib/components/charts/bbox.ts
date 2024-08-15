@@ -12,7 +12,7 @@ export class BBox {
 				Number.POSITIVE_INFINITY,
 				Number.POSITIVE_INFINITY,
 				Number.NEGATIVE_INFINITY,
-				Number.NEGATIVE_INFINITY,
+				Number.NEGATIVE_INFINITY
 			];
 		}
 	}
@@ -30,7 +30,7 @@ export class BBox {
 			this.bbox[0],
 			this.bbox[1],
 			this.bbox[2] - this.bbox[0],
-			this.bbox[3] - this.bbox[1],
+			this.bbox[3] - this.bbox[1]
 		].join(' ');
 	}
 

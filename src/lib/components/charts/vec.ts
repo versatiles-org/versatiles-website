@@ -14,11 +14,16 @@ export class Vec {
 
 	public static fromChar(char: string): Vec {
 		switch (char.toUpperCase()) {
-			case 'N': return new Vec(0, -1);
-			case 'S': return new Vec(0, 1);
-			case 'W': return new Vec(-1, 0);
-			case 'E': return new Vec(1, 0);
-			default: throw Error();
+			case 'N':
+				return new Vec(0, -1);
+			case 'S':
+				return new Vec(0, 1);
+			case 'W':
+				return new Vec(-1, 0);
+			case 'E':
+				return new Vec(1, 0);
+			default:
+				throw Error();
 		}
 	}
 
@@ -75,7 +80,7 @@ export class Vec {
 	}
 
 	public isParallelToAxis(): boolean {
-		return (Math.abs(this.x) < TINY) || (Math.abs(this.y) < TINY);
+		return Math.abs(this.x) < TINY || Math.abs(this.y) < TINY;
 	}
 
 	public str(): string {
@@ -166,7 +171,7 @@ export class Vec {
 	}
 
 	public getRotated90(): Vec {
-		return new Vec(this.y, - this.x);
+		return new Vec(this.y, -this.x);
 	}
 
 	public getAngleTo(vec: Vec): number {
