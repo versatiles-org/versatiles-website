@@ -1,5 +1,4 @@
 import type { BBox } from './bbox.ts';
-import { GlobalStyle } from './style.ts';
 import { Group, createElement, setAttributes } from './svg.ts';
 
 
@@ -7,10 +6,6 @@ import { Group, createElement, setAttributes } from './svg.ts';
 const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export class Canvas {
-	public readonly stylesDefault = new GlobalStyle();
-
-	public readonly stylesDark = new GlobalStyle();
-
 	public readonly root: Group;
 
 	private idIndex = 0;
@@ -28,14 +23,6 @@ export class Canvas {
 		const svg = createElement('svg');
 		const bbox = root.getBBox();
 		bbox.addPadding(padding);
-		svg.insertAdjacentHTML('afterbegin', [
-			'<style>',
-			this.stylesDefault.asText(),
-			'@media (prefers-color-scheme: dark) {',
-			this.stylesDark.asText(),
-			'}',
-			'</style>',
-		].join('\n'));
 		svg.append(root.node);
 
 		setAttributes(svg, {
@@ -43,7 +30,7 @@ export class Canvas {
 			xmlns: 'http://www.w3.org/2000/svg',
 		});
 		svg.setAttribute('viewBox', bbox.viewBox);
-		return svg.outerHTML;
+		return svg.outerHTML();
 	}
 
 	public getNewId(): string {

@@ -2,7 +2,6 @@
 import type { Group, RectType } from './svg.ts';
 import { Canvas } from './canvas.ts';
 import Color from 'color';
-import type { MultiColor } from './style.ts';
 
 const fontFamily = 'sans-serif';
 
@@ -51,23 +50,16 @@ export class Chart {
 		return this.canvas.asSVG(padding);
 	}
 
-	public asImg(padding: number): string {
-		const svg = this.canvas.asSVG(padding);
-		const style = `width:100%; height:auto; max-width:${this.canvas.getBBox().width}px;`;
-		return `<img src="data:image/svg+xml;base64,${btoa(svg)}" style="${style}">`;
-	}
-
 	public addFlow(): { add: (text: string, hue: number, alpha: number, highlight?: boolean, end?: boolean) => void } {
 		let x0 = 0;
 		const { y0 } = this;
 
 		this.y0 += this.boxHeight;
 
-		 
 		const add = (text: string, hue: number, alpha: number, highlight = false, end = false): void => {
 			const colorLight = Color([hue, 100, 40, alpha], 'hsl').toString();
 			const colorDark = Color([hue, 100, 60, alpha], 'hsl').toString();
-			const color: MultiColor = [colorLight, colorDark];
+			const color = `light-dark(${colorLight},${colorDark})`;
 
 			const width = end
 				? this.colStart - this.colWidth / 4 - this.boxHeight / 4

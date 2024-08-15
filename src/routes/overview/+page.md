@@ -12,7 +12,7 @@ VersaTiles tackles this problem by defining a four-step process chain that defin
 
 ## The 4 steps of VersaTiles
 
-<!--{{{chart_flow}}}-->
+<ChartFlow></ChartFlow>
 
 The grey boxes represent data. The red boxes are steps that process the data.
 The whole process chain takes OSM data as input and produces a web map as output.
@@ -20,39 +20,39 @@ The whole process chain takes OSM data as input and produces a web map as output
 The process chain in more details:
 
 <table class="overview">
-<tr><th><!--{{{chart_flow 0}}}--></th><td>
+<tr><th><ChartFlow step="0"></ChartFlow></th><td>
 
 We use the latest OSM dump.
 </td></tr>
-<tr><th><!--{{{chart_flow 1}}}--></th><td>
+<tr><th><ChartFlow step="1"></ChartFlow></th><td>
 
 _Generator produces vector tiles._ We use [Tilemaker](https://tilemaker.org/) to generate vector tiles in [shortbread schema](https://shortbread-tiles.org/schema/).
 </td></tr>
-<tr><th><!--{{{chart_flow 2}}}--></th><td>
+<tr><th><ChartFlow step="2"></ChartFlow></th><td>
 
 a [versatiles container](http://github.com/versatiles-org/versatiles-spec), a much simpler and more efficient tile storage format than .mbtiles.
 </td></tr>
-<tr><th><!--{{{chart_flow 3}}}--></th><td>
+<tr><th><ChartFlow step="3"></ChartFlow></th><td>
 
 _Server is serving the vector tiles._
 </td></tr>
-<tr><th><!--{{{chart_flow 4}}}--></th><td>
+<tr><th><ChartFlow step="4"></ChartFlow></th><td>
 
 ... but only speaks HTTP, because ...
 </td></tr>
-<tr><th><!--{{{chart_flow 5}}}--></th><td>
+<tr><th><ChartFlow step="5"></ChartFlow></th><td>
 
 _The Network handles the network stuff,_ like TLS certificates, caching, load balancing, etc.
 </td></tr>
-<tr><th><!--{{{chart_flow 6}}}--></th><td>
+<tr><th><ChartFlow step="6"></ChartFlow></th><td>
 
 Now we serve tiles to the internet ...
 </td></tr>
-<tr><th><!--{{{chart_flow 7}}}--></th><td>
+<tr><th><ChartFlow step="7"></ChartFlow></th><td>
 
 _The Frontend loads and renders the vector tiles._
 </td></tr>
-<tr><th><!--{{{chart_flow 8}}}--></th><td>
+<tr><th><ChartFlow step="8"></ChartFlow></th><td>
 
 Enjoy.
 </td></tr>
