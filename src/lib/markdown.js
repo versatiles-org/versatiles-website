@@ -4,8 +4,11 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import { visit } from 'unist-util-visit';
+import matter from 'gray-matter';
 
 async function markdownToHtml(content) {
+	// Parse frontmatter from the markdown content
+	const { data: metadata, content: markdownContent } = matter(content);
 	let imports = new Set();
 
 	function transformCodeBlocks() {
@@ -37,6 +40,7 @@ async function markdownToHtml(content) {
 			});
 		};
 	}
+
 	let result = (
 		await unified()
 			.use(remarkParse)
@@ -44,8 +48,16 @@ async function markdownToHtml(content) {
 			.use(rehypeRaw)
 			.use(transformCodeBlocks())
 			.use(rehypeStringify, { allowDangerousHtml: true })
-			.process(content)
+			.process(markdownContent)
 	).toString();
+
+	// Generate the <svelte:head> content
+	const headContent = [];
+	if (metadata.title) headContent.push(`<title>${metadata.title}</title>`);
+
+	if (headContent) {
+		result = ['<svelte:head>', ...headContent, '</svelte:head>', result].join('\n');
+	}
 
 	if (imports.size > 0) {
 		result = ['<script lang="ts">', ...Array.from(imports.values()), '</script>', result].join(
