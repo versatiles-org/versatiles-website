@@ -15,7 +15,6 @@ async function markdownToHtml(content) {
 					imports.add('import ChartFlow from "$lib/components/ChartFlow.svelte";');
 					node.tagName = 'ChartFlow';
 					node.children = [];
-					return;
 				};
 				if (node.tagName === 'pre' && node.children.length && node.children[0].tagName === 'code') {
 					const codeNode = node.children[0];
@@ -30,7 +29,6 @@ async function markdownToHtml(content) {
 						languageName: language
 					};
 					node.children = []; // No children needed for the custom component
-					return;
 				}
 			});
 		};
@@ -63,6 +61,7 @@ function markdown() {
 		markup: ({ content, filename }) => {
 			if (filename.endsWith('.md')) {
 				return markdownToHtml(content).then((code) => {
+					console.log(code);
 					return { code }
 				});
 			}

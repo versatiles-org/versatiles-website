@@ -1,5 +1,4 @@
 import { BBox } from './bbox.ts';
-import type { Canvas } from './canvas.ts';
 
 export type BBoxType = [number, number, number, number];
 export type RectType = [number, number, number, number];
@@ -13,12 +12,9 @@ export class Group {
 
 	protected readonly subGroups: Group[] = [];
 
-	private readonly canvas: Canvas;
-
-	public constructor(canvas: Canvas) {
+	public constructor() {
 		this.node = createElement('g');
 		this.bbox = new BBox();
-		this.canvas = canvas;
 	}
 
 	public getBBox(): BBox {
@@ -30,7 +26,7 @@ export class Group {
 	}
 
 	public appendGroup(): Group {
-		const group = new Group(this.canvas);
+		const group = new Group();
 		this.append(group.node);
 		this.subGroups.push(group);
 		return group;

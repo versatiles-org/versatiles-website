@@ -1,7 +1,7 @@
 
-import type { Group, RectType } from './svg.ts';
-import { Canvas } from './canvas.ts';
+import { Group, type RectType } from './svg.ts';
 import Color from 'color';
+import type { BBox } from './bbox.ts';
 
 const fontFamily = 'sans-serif';
 
@@ -19,7 +19,7 @@ interface Options {
 }
 
 export class Chart {
-	private readonly canvas: Canvas;
+	private readonly root: Group;
 
 	private y0 = 0;
 
@@ -32,13 +32,12 @@ export class Chart {
 	private readonly boxHeight: number;
 
 	public constructor(opt: Options = {}) {
-		this.canvas = new Canvas();
+		this.root = new Group();
 
-		const { root } = this.canvas;
 		this.layers = {
-			fill: root.appendGroup(),
-			line: root.appendGroup(),
-			text: root.appendGroup(),
+			fill: this.root.appendGroup(),
+			line: this.root.appendGroup(),
+			text: this.root.appendGroup(),
 		};
 
 		this.colWidth = opt.colWidth ?? 200;
@@ -46,8 +45,12 @@ export class Chart {
 		this.boxHeight = opt.boxHeight ?? 40;
 	}
 
-	public asSVG(padding: number): string {
-		return this.canvas.asSVG(padding);
+	public getBBox(): BBox {
+		return this.root.getBBox();
+	}
+
+	public getSVG(): string {
+		return this.root.node.outerHTML()
 	}
 
 	public addFlow(): { add: (text: string, hue: number, alpha: number, highlight?: boolean, end?: boolean) => void } {

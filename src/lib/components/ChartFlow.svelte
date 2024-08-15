@@ -2,6 +2,7 @@
 	import { Chart } from './charts/chart.js';
 
 	export let step: number | undefined = undefined;
+	export let style = '';
 
 	const c = new Chart({
 		colWidth: 200,
@@ -30,8 +31,16 @@
 		f.add(s.text, s.hue, s.opacity, s.highlight, s.end);
 	});
 
-	const svg = c.asSVG(2);
-	console.log(svg);
+	const bbox = c.getBBox();
+	bbox.addPadding(2);
+	const svg = c.getSVG();
 </script>
 
-{@html svg}
+<svg
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox={bbox.viewBox}
+	width={bbox.width}
+	height={bbox.height}
+	{style}>{@html svg}</svg
+>

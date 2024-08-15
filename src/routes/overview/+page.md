@@ -12,7 +12,7 @@ VersaTiles tackles this problem by defining a four-step process chain that defin
 
 ## The 4 steps of VersaTiles
 
-<ChartFlow></ChartFlow>
+<ChartFlow style="max-width:100%"></ChartFlow>
 
 The grey boxes represent data. The red boxes are steps that process the data.
 The whole process chain takes OSM data as input and produces a web map as output.
