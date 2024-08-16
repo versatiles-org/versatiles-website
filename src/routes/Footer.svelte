@@ -4,8 +4,6 @@
 	let gitUrl = '';
 	$: {
 		gitUrl = `${prefix}${$page.route.id}`.replace(/\/{2,}/g, '/');
-		console.log($page);
-		console.log($page.route);
 	}
 </script>
 

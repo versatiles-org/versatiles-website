@@ -212,13 +212,6 @@
 </section>
 
 <style>
-	hr {
-		margin: 5em auto 2em;
-		border: none;
-		height: 1px;
-		background: #888;
-		width: 100vw;
-	}
 	.form h2 {
 		margin-bottom: 0;
 	}

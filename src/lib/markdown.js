@@ -74,7 +74,6 @@ function markdown() {
 		markup: ({ content, filename }) => {
 			if (filename.endsWith('.md')) {
 				return markdownToHtml(content).then((code) => {
-					console.log(code);
 					return { code };
 				});
 			}
