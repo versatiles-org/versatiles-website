@@ -2,10 +2,10 @@
 	import Menu from '$lib/components/Menu.svelte';
 
 	const items = [
-		{ url: '', label: 'Demo' },
-		{ url: 'intro', label: 'Intro' },
-		{ url: 'overview', label: 'Overview' },
-		{ url: 'contribute', label: 'Contribute' }
+		{ url: '', label: 'Intro' },
+		{ url: 'tools', label: 'Tools' },
+		{ url: 'docs', label: 'Documentation' },
+		{ url: 'contact', label: 'Contact' }
 	];
 </script>
 
