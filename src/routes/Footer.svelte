@@ -1,10 +1,12 @@
 <script>
 	import { page } from '$app/stores';
-	const gitUrl =
-		`https://github.com/versatiles-org/apps/blob/main/src/routes/${$page.route.id}/%2Bpage.svelte`.replace(
-			/\/{2,}/g,
-			'/'
-		);
+	const prefix = 'https://github.com/versatiles-org/apps/blob/main/src/routes/';
+	let gitUrl = '';
+	$: {
+		gitUrl = `${prefix}${$page.route.id}`.replace(/\/{2,}/g, '/');
+		console.log($page);
+		console.log($page.route);
+	}
 </script>
 
 <footer>

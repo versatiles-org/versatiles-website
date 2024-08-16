@@ -20,6 +20,7 @@
 		"@types/color": "^3.0.6",
 		"@types/eslint": "^9.6.1",
 		"@types/hast": "^3.0.4",
+		"@versatiles/svelte": "^0.0.3",
 		"color": "^4.2.3",
 		"eslint": "^9.13.0",
 		"eslint-config-prettier": "^9.1.0",
