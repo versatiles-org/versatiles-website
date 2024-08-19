@@ -3,7 +3,7 @@
 	/* eslint-disable svelte/no-at-html-tags */
 	import { Chart } from './charts/chart.js';
 
-	export let step: number | undefined = undefined;
+	export let step: string = '';
 	export let style = '';
 
 	const c = new Chart({
@@ -26,8 +26,7 @@
 	];
 
 	const f = c.addFlow();
-	if (typeof step === 'string') step = parseInt(step, 10);
-	if (typeof step === 'number') steps = [steps[step]];
+	if (typeof step === 'string') steps = [steps[parseInt(step, 10)]];
 
 	steps.forEach((s) => {
 		f.add(s.text, s.hue, s.opacity, s.highlight, s.end);
