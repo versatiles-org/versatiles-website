@@ -32,7 +32,7 @@
 		"@sveltejs/adapter-static": "^3.0.5",
 		"@sveltejs/kit": "^2.7.2",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
-		"@versatiles/svelte": "^0.1.1",
+		"@versatiles/svelte": "^0.1.2",
 		"color": "^4.2.3",
 		"gray-matter": "^4.0.3",
 		"less": "^4.2.0",
